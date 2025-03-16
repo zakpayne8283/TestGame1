@@ -1,44 +1,16 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Map : MonoBehaviour
+[CreateAssetMenu(fileName = "Map", menuName = "Scriptable Objects/Map")]
+public class Map : ScriptableObject
 {
-    // Button that triggers the map to open or close.
-    public Button _viewMapButton;
+    public Location currentLocation;
 
-    // The Map canvas that will flyout
-    public Canvas _MapFlyout;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static Map CreateInitialMap()
     {
-        
-    }
+        Map output = new Map();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        Debug.Log("Creating initial map");
 
-    /// <summary>
-    /// On "Town Description" click, show flyout menu with town details
-    /// </summary>
-    public void toggleViewMap()
-    {
-        bool isActive = _MapFlyout.gameObject.activeSelf;
-
-        // If not displayed, display and change button text.
-        if (!isActive)
-        {
-            _MapFlyout.GetComponentInChildren<TMP_Text>().text = "Close Map";
-        }
-        else
-        {
-            _MapFlyout.GetComponentInChildren<TMP_Text>().text = "View Map";
-        }
-
-        _MapFlyout.gameObject.SetActive(!isActive);
+        return output;
     }
 }
